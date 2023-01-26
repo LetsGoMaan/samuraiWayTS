@@ -2,7 +2,7 @@ import React from 'react';
 import './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ProfilePageType, PropsType} from "../../App";
+import {ProfilePageType} from "../../App";
 
 type ProfilePropsType = {
     state: ProfilePageType

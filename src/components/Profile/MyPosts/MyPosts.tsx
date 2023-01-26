@@ -5,7 +5,7 @@ import Post from "./Post/Post.module";
 import {PostType} from "../../../App";
 
 type MyPostsPropsType = {
-    posts: PostType
+    posts: Array<PostType>
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
