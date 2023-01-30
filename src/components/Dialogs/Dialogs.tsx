@@ -24,6 +24,7 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={classes.messages}>
                 {messagesElements}
                 </div>
+
             </div>
     )
 }
