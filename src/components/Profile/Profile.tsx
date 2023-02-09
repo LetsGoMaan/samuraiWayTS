@@ -5,8 +5,9 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ProfilePageType} from "../../App";
 
 type ProfilePropsType = {
-    state: ProfilePageType
-    addPost: (postMessage: string) => void
+    profilePage: ProfilePageType
+    addPost: () => void
+    updateNewPostText: (newText:string) => void
 }
 
 const Profile = (props:ProfilePropsType) => {
@@ -15,10 +16,13 @@ const Profile = (props:ProfilePropsType) => {
         <div>
             <ProfileInfo/>
             <MyPosts
-                posts={props.state.posts}
+                posts={props.profilePage.posts}
+                newPostText={props.profilePage.newPostText}
                 addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
             />
         </div>
     )
 }
 export default Profile;
+
