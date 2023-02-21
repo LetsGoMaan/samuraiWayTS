@@ -1,4 +1,4 @@
-import classes from './Dialogs.module.css';
+import classes from "./Dialogs.module.css";
 import React from "react";
 import Dialog from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
@@ -10,10 +10,20 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
 
+    let state = props.dialogsPage;
 
-    const dialogsElements = props.state.dialogs.map(el =>  <Dialog  name ={el.name} id={el.id} /> )
+    const dialogsElements = state.dialogs.map(el =>  <Dialog  name ={el.name} id={el.id} /> )
+    const messagesElements = state.messages.map(el =>  <Message message={el.message}/> )
+    const newMessageBody = state.newMessageBody;
 
-    const messagesElements = props.state.messages.map(el =>  <Message message={el.message}/> )
+    let onSendMessageClick = () => {
+        props.sendMessage();
+    }
+
+    let onNewMessageSend = (e) => {
+     let body = e.currentTarget.value
+        props.updateNewMessageBody(body)
+    }
 
     return (
         <div className={classes.dialogs}>
@@ -22,7 +32,13 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
 
             <div className={classes.messages}>
-                {messagesElements}
+                <div>{messagesElements}</div>
+                <div>
+                    <div><textarea value={newMessageBody}
+                                   onChange={onNewMessageSend}
+                                   placeholder='Enter your message'></textarea></div>
+                    <div><button onClick={onSendMessageClick}>Send</button></div>
+                </div>
                 </div>
 
             </div>

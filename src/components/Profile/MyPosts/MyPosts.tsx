@@ -1,6 +1,6 @@
-import React, {ChangeEvent} from 'react';
-import './MyPosts.module.css'
-import classes from './MyPosts.module.css'
+import React, {ChangeEvent} from "react";
+import "./MyPosts.module.css"
+import classes from "./MyPosts.module.css"
 import Post from "./Post/Post.module";
 import {PostType} from "../../../App";
 
@@ -8,23 +8,24 @@ import {PostType} from "../../../App";
 type MyPostsPropsType = {
     posts: Array<PostType>
     addPost: () => void
-    updateNewPostText: (newText:string) => void
+    updateNewPostText: (newText: string) => void
     newPostText: string
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
 
+
     const postElements = props.posts.map(el => <Post message={el.message} likeCount={el.likeCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
+    const onAddPost = () => {
         props.addPost();
-        props.updateNewPostText('')
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.updateNewPostText(e.currentTarget.value)
+        let text = newPostElement.current?.value
+        props.updateNewPostText(text)
     }
 
     return (
@@ -38,7 +39,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                     value={props.newPostText}/>
             </div>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
 
             <div className={classes.posts}>
